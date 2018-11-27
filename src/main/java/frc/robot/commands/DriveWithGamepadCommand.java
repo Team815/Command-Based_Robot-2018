@@ -31,6 +31,7 @@ public class DriveWithGamepadCommand extends Command {
       Robot.m_oi.driverController.getRawAxis(1)*Robot.drivetrain.speedModifier,
       Robot.m_oi.driverController.getRawAxis(4)*Robot.drivetrain.speedModifier
     );
+    System.out.println(Robot.drivetrain.speedModifier);
   }
 
   // Make this return true when this Command no longer needs to run execute()

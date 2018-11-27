@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.RobotMap;
@@ -28,11 +29,13 @@ public class DrivetrainSubsystem extends Subsystem {
   WPI_VictorSPX motorRearLeft = new WPI_VictorSPX(RobotMap.MOTOR_PORT_REAR_LEFT);
   
   MecanumDrive drivetrain;
+  public ADXRS450_Gyro gyro;
 
   public double speedModifier;
 
   public DrivetrainSubsystem() {
     drivetrain = new MecanumDrive(motorFrontRight, motorRearRight, motorFrontLeft, motorRearLeft);
+    gyro = new ADXRS450_Gyro();
     speedModifier = 1;
   }
 
@@ -43,6 +46,7 @@ public class DrivetrainSubsystem extends Subsystem {
   }
 
   public void drive(double y, double x, double z) {
+    drivetrain.driveCartesian(y, x, z, gyro.getAngle());
     drivetrain.driveCartesian(y, x, z);
   }
 

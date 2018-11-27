@@ -15,6 +15,7 @@ import frc.robot.commands.ArcadeDriveBackwardsCommand;
 import frc.robot.commands.ArcadeDriveForwardCommand;
 import frc.robot.commands.ManuallyDecreaseSpeedCommand;
 import frc.robot.commands.ManuallyIncreaseSpeedCommand;
+import frc.robot.commands.ResetGyroCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -51,7 +52,7 @@ public class OI {
 
   //public XboxController xboxController = new XboxController(0);
   
-  public Joystick driverController = new Joystick(3);
+  public Joystick driverController = new Joystick(0);
   public Button A = new JoystickButton(driverController, 1);
   public Button B = new JoystickButton(driverController, 2);
   public Button X = new JoystickButton(driverController, 3);
@@ -62,6 +63,7 @@ public class OI {
   public OI() {
     A.whileHeld(new ArcadeDriveForwardCommand());
     B.whileHeld(new ArcadeDriveBackwardsCommand());
+    X.whenPressed(new ResetGyroCommand());
     LB.whenPressed(new ManuallyDecreaseSpeedCommand());
     RB.whenPressed(new ManuallyIncreaseSpeedCommand());
     

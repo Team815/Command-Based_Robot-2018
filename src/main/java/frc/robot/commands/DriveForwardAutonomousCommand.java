@@ -7,44 +7,45 @@
 
 package frc.robot.commands;
 
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ManuallyIncreaseSpeedCommand extends Command {
-  private boolean isFinished;
-
-  public ManuallyIncreaseSpeedCommand() {
+public class DriveForwardAutonomousCommand extends Command {
+  Timer timer;
+  
+  public DriveForwardAutonomousCommand() {
     // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
     requires(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    isFinished = false;
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.drivetrain.speedModifier < 1) {
-      Robot.drivetrain.speedModifier += .1;
-    }
-      isFinished = true;
+    Robot.drivetrain.drive(.2, 0, 0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isFinished;
+    if(timer.get() > 3) {
+      return true;
+    }
+    else return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    if(Robot.drivetrain.speedModifier > 1) {
-      Robot.drivetrain.speedModifier = .95;
-    }
+    Robot.drivetrain.drive(0, 0, 0);
   }
 
   // Called when another command which requires one or more of the same
