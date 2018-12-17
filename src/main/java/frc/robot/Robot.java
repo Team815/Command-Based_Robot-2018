@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.DriveForwardAuton;
 import frc.robot.commands.DriveForwardAutonomousCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -43,7 +44,7 @@ public class Robot extends TimedRobot {
     m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    autoDrive = new DriveForwardAutonomousCommand();
+    autoDrive = new DriveForwardAuton();
   }
 
   /**
@@ -86,7 +87,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
-    autoDrive.start();
+    if (autoDrive != null){
+      autoDrive.start();
+    }
+    
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
