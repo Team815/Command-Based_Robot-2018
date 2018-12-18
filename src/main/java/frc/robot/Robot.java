@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriveForwardAuton;
 import frc.robot.commands.DriveForwardAutonomousCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 
@@ -28,6 +29,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+  public static Claw claw = new Claw();
   public static Command autoDrive;
   public static OI m_oi = new OI();
 

@@ -16,6 +16,7 @@ import frc.robot.commands.ArcadeDriveForwardCommand;
 import frc.robot.commands.ManuallyDecreaseSpeedCommand;
 import frc.robot.commands.ManuallyIncreaseSpeedCommand;
 import frc.robot.commands.ResetGyroCommand;
+import frc.robot.commands.RollRollers;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -66,6 +67,7 @@ public class OI {
     X.whenPressed(new ResetGyroCommand());
     LB.whenPressed(new ManuallyDecreaseSpeedCommand());
     RB.whenPressed(new ManuallyIncreaseSpeedCommand());
+    Y.whileHeld(new RollRollers());
     
   }
 
